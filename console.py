@@ -35,7 +35,6 @@ class HBNBCommand(cmd.Cmd):
         if not sys.__stdin__.isatty():
             print('(hbnb)')
 
-
     def postcmd(self, stop, line):
         """Prints if isatty is false"""
         if not sys.__stdin__.isatty():
@@ -66,7 +65,6 @@ class HBNBCommand(cmd.Cmd):
     def key_value_parser(self, args):
         """ Parses args into a dictionary """
         kwargs = {}
-        args = args.split(' ')
         for arg in args:
             if '=' in arg:
                 arg = arg.split('=')
@@ -77,14 +75,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
-        if not args:
+        args = args.split()
+        if not len(args):
             print("** class name missing **")
             return
         elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
 
-        key_values = self.key_value_parser(args)
+        key_values = self.key_value_parser(args[1:])
         new_instance = HBNBCommand.classes[args[0]](**key_values)
         print(new_instance.id)
         new_instance.save()
@@ -282,6 +281,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
