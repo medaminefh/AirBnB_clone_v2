@@ -3,8 +3,6 @@
 db storage class
 """
 
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy import create_engine
 from os import getenv
 from models.base_model import Base
 from models.amenity import Amenity
@@ -13,6 +11,8 @@ from models.user import User
 from models.city import City
 from models.state import State
 from models.review import Review
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy import create_engine
 
 
 classes = {"Amenity": Amenity, "City": City,
@@ -34,7 +34,7 @@ class DBStorage:
                                       format(USER,
                                              PWD,
                                              HOST,
-                                             DB))
+                                             DB),pool_pre_ping=True)
         if HBNB_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
