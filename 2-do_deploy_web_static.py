@@ -5,6 +5,7 @@ from os import path
 
 env.hosts = ['54.82.132.211', '100.25.194.199']
 env.user = 'ubuntu'
+env.key_filename = "secret_key"
 
 def do_deploy(archive_path):
     """Function to distribute an archive to your web servers."""
