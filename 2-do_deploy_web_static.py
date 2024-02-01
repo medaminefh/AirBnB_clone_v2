@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""Fabric script that distributes an archive to your web servers, using the function do_deploy."""
+"""Fabric script that distributes an archive to your web servers,
+using the function do_deploy."""
 from fabric.api import put, run, env
 from os import path
+
 
 env.hosts = ['54.82.132.211', '100.25.194.199']
 env.user = 'ubuntu'
