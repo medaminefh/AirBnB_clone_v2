@@ -2,13 +2,13 @@
 """This module defines a class User"""
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
-from models.__init__ import storage_type
+import models
 from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
     """This class defines a user by various attributes"""
-    if storage_type == "db":
+    if models.storage_type == "db":
         __tablename__ = 'users'
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
